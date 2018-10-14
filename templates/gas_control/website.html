@@ -1,0 +1,144 @@
+{% extends 'gas_control/base.html' %}
+{% load static %}
+
+
+{% block maindiv %}
+<div id="maindiv">
+    <div id="controldiv">
+        <div id="form">
+         <input type="text" class = "inputer" id="he" name="input" placeholder="Nivel de Hélio">
+            <input type="text" class = "inputer" id="ars" name="ars"  placeholder="Nivel de Ar Sintetico">
+            <input type="text" class = "inputer" id="h2" name="input" placeholder="Nivel de Hidrogenio">
+            <input type="text" class="inputer" id="fname" name="verdate" placeholder="Data de Verificacao">
+            <input type="text" class="inputer" id="fname" name="vername" placeholder="Nome do Verificador">
+            <button class = "inputer" onclick="volume()" style="color:black">Atualizar Volumes!</button>
+        </div>
+
+        <div id=canisterdiv>
+             <div id=candiv1 class="candiv">
+                 <div class="clock">
+                        <img src="{%  static 'images/valveg.jpg'%}" alt=valve">
+                 </div>
+                 <div class = "canister3" id=div04 >
+                     <button class="popup" onclick="gas_info(0)">Ar Sintético</button>
+                     <div class = "divte">
+                         {% for gas in all_gases %}
+                            {% if gas.name == 'Ar Sintético' %}
+                                <br>Volume Atual: {{ gas.cvol }} kgf<br>
+                                <br>Porcentagem: {{ gas.porcentage}}%<br>
+                            {% endif %}
+                         {% endfor %}
+                         <br>Último Reabastecimento: <br>17/09/2018
+                     </div>
+                 </div>
+             </div>
+            <div id=candiv2 class="candiv">
+                 <div class="clock">
+                        <img src="{%  static 'images/valveg.jpg'%}" alt=valve">
+                 </div>
+                 <div class = "canister2" id=div03>
+                    <button class="popup" onclick="gas_info(1)">Hidrogênio</button>
+                     <div class = "divte">
+                         {% for gas in all_gases %}
+                            {% if gas.name == 'Hidrogênio' %}
+                                <br>Volume Atual: {{ gas.cvol }} kgf<br>
+                                <br>Porcentagem: {{ gas.porcentage }}%<br>
+                            {% endif %}
+                         {% endfor %}
+                         <br>Último Reabastecimento: <br>17/09/2018
+                     </div>
+                 </div>
+            </div>
+            <div id=candiv1 class="candiv">
+                    <div class="clock">
+                        <img src="{%  static 'images/valveg.jpg'%}" alt=valve">
+                    </div>
+                   <div class = "canister" id=div05>
+                    <button class="popup" onclick="gas_info(2)">Hélio </button>
+                     <div class = "divte">
+                         {% for gas in all_gases %}
+                            {% if gas.name == 'Hélio' %}
+                                <br>Volume Atual: <br>{{ gas.cvol }} kpa<br>
+                                <br>Porcentagem: {{ gas.porcentage }}%<br>
+
+                            {% endif %}
+                         {% endfor %}
+                         <br>Último Reabastecimento: <br>17/09/2018
+                     </div>
+                   </div>
+            </div>
+        </div>
+    </div>
+    <div id=graphs>
+        <div id=graphs2>Ultima Verificação: 01/10/2018 - Guilherme Niederauer
+        </div>
+        <div class="inline-block">
+            <img src="{%  static 'images/ars_h2.png'%}" alt ="ars" style="float: left; width: 48%; height: 80%; margin-left: 1%;">
+            <img src="{%  static 'images/helio.png' %}" alt ="he" style="float: right; width: 50%; height: 80%; margin-left: 1%;">
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block script %}
+
+<script>
+
+function gas_info(index){
+    var gases = '{{ json_gases|escapejs }}';
+    console.log(gases)
+    var divs = document.getElementsByClassName("divte")[index];
+    console.log(divs.display);
+    if (divs.display = "hidden"){
+     divs.style.visibility = 'visible';
+    }
+}
+function volume(){
+var hemax_vol = 150;
+var ars_vol = 18000;
+var h_vol = 16000;
+var vol_he = document.getElementById("he").value;
+var vol_ars = document.getElementById("ars").value;
+var vol_h = document.getElementById("h2").value;
+var max_volumes = [hemax_vol, ars_vol, h_vol];
+var current_vol = [vol_he, vol_ars, vol_h];
+percentage(max_volumes, current_vol);
+}
+
+
+function percentage(max_volumes, current_vol){
+var gases = ["div04", "div03", "div05"];
+var glength = gases.length;
+var i;
+var cur;
+var maxs;
+var vol_porc;
+for (i=0; i < glength; i++) {
+	maxs = max_volumes[i];
+	cur = current_vol[i];
+	vol_porc = parseInt((cur*100)/(maxs), 10);
+	display(gases, i, vol_porc);
+	}
+}
+
+
+function display(gases, i, porc) {
+	var gas = gases[i];
+	var porc2 = 100 - porc;
+	console.log(porc);
+	var canis_color0 = ['rgba(201,146,137,1)', 'rgba(235,255,232,1)', 'rgba(191,232,255,1)'];
+	var canis_color1 = ['rgba(128,8,8,1) 100%', 'rgba(0,128,0,1) 100%)', 'rgba(0,0,255,1) 100%)'];
+    document.getElementById(gas).style.background = 'linear-gradient(to bottom,' + canis_color0[i]+ ' ' + porc2 + '%, ' +canis_color1[i];
+}
+function popups(gase) {
+	var gas = ["ars", "h2", "he"];
+	var div = ["Popup","Popup2","Popup3"];
+	var inx = gas.indexOf(gase);
+	var popup = document.getElementById(div[inx]);
+	popup.classList.toggle("show");
+}
+
+</script>
+
+{% endblock %}

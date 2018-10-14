@@ -1,0 +1,25 @@
+{%  load staticfiles %}
+<html>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8"/>
+<head>
+<link rel="stylesheet" href="{% static 'css/basic.css' %}">
+</head>
+<body id=body>
+<div id="banner">
+	<img id="bannerimg" src="{% static 'images/banner2.png' %}" alt ="banner" >
+</div>
+	<ul>
+	<li><a href="/">Início</a></li>
+    <li><a>Agenda</a></li>
+    <li><a href="/gas_control">Controle De Gás</a></li>
+    <li><a href="/basic">Pesquisadores</a></li>
+    <li><a href="/basic">Avisos</a></li>
+	<li><a href="/basic">Contato</a></li>
+    </ul>
+{%  block maindiv %}
+{%  endblock %}
+</body>
+{% block script %}
+{% endblock %}
+</html>

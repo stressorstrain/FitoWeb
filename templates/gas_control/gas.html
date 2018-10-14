@@ -1,0 +1,25 @@
+{% extends 'gas_control/base.html' %}
+{% load static %}
+
+
+{% block maindiv %}
+<div id="maindiv">
+    HELLO GAS = {{ context_variable }}</div>
+
+{% endblock %}
+
+{% block script %}
+
+<script>
+
+function gas_info(index){
+    var divs = document.getElementsByClassName("divte")[index];
+    console.log(divs.display);
+    if (divs.display = "hidden"){
+     divs.style.visibility = 'visible';
+    }
+}
+
+</script>
+
+{% endblock %}
