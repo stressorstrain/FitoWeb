@@ -1,0 +1,33 @@
+{% extends 'gas_control/base.html' %}
+{% load static %}
+
+{% block maindiv %}
+    <div class="row">
+        <div url-endpoint ='{% url "chart-api"  %}'>
+            <h1> Hello World</h1>
+        </div>
+
+    </div>
+{% endblock maindiv%}
+
+{% block script %}
+<script src="//cdnjs.cloudflare.com/ajax/libs/Chart.js/0.2.0/Chart.min.js" type="text/javascript"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+var endpoint = 'api/';
+var customersDjango = parseInt("{{ customers }}"*234);
+console.log(customersDjango);
+$.ajax({
+    method: 'GET',
+    url: endpoint,
+    success: function (data) {
+        console.log(data);
+        console.log(data.customers * 234)
+    },
+    error: function (error_data) {
+        console.log("error");
+        console.log(error_data)
+    }
+})
+</script>
+{% endblock script %}
