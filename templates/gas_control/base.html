@@ -14,12 +14,17 @@
     <li><a>Agenda</a></li>
     <li><a href="/gas_control">Controle De Gás</a></li>
     <li><a href="/basic">Pesquisadores</a></li>
-    <li><a href="/basic">Avisos</a></li>
+    <li><a href="/chart">Chart</a></li>
 	<li><a href="/basic">Contato</a></li>
     </ul>
 {%  block maindiv %}
+    {% block forma %}
+    {% endblock %}
 {%  endblock %}
 </body>
 {% block script %}
+{% endblock %}
+{% block content %}
+<canvas id="myChart" width="500" height="300"></canvas>
 {% endblock %}
 </html>

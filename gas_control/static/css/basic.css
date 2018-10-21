@@ -139,8 +139,8 @@ input[type=text], select {
 }
 
 .canister3 {
-    margin-top: 0%;
-    margin-right: 60%;
+
+  margin-right: 60%;
   width: 30%;
   height: 74%;
   border-bottom-left-radius: 30%;
@@ -149,7 +149,7 @@ input[type=text], select {
   border-top-right-radius: 10%;
   background: linear-gradient(to bottom, #FFFFFF -20%, #70040D 100%); /* w3c */
   display: inline-block;
-    position: relative;
+  position: relative;
 }
 .divtext {
   margin-top: 90px;

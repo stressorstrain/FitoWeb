@@ -5,47 +5,77 @@
 {% block maindiv %}
 <div id="maindiv">
     <div id="controldiv">
-        <div id="form">
-         <input type="text" class = "inputer" id="he" name="input" placeholder="Nivel de Hélio">
-            <input type="text" class = "inputer" id="ars" name="ars"  placeholder="Nivel de Ar Sintetico">
-            <input type="text" class = "inputer" id="h2" name="input" placeholder="Nivel de Hidrogenio">
-            <input type="text" class="inputer" id="fname" name="verdate" placeholder="Data de Verificacao">
-            <input type="text" class="inputer" id="fname" name="vername" placeholder="Nome do Verificador">
-            <button class = "inputer" onclick="volume()" style="color:black">Atualizar Volumes!</button>
-        </div>
+        {% block forma %}
+            <div id="form" >
+                <a href="{% url 'gases' %}" ></a>
+                <form method="POST" id="forma">
+                    {% csrf_token %}
+                      <table style="width:100%; text-align: left;"><br>Atualização de Volumes
+                          <tr>
+                              <th class="formth">{{ form.Gas.label_tag }}</th>
+                              <td style="width:100%">
+                                  {{ form.Gas }}
+                              </td>
+                          </tr>
+                         <tr>
+                              <th>{{ form.Volume_Verificado.label_tag }}</th>
+                              <td>
+                                  {{ form.Volume_Verificado.errors }}
+                                  {{ form.Volume_Verificado }}
+                              </td>
+                          </tr>
+                         <tr>
+                              <th>{{ form.Nome_do_Verificador.label_tag }}</th>
+                              <td>
+                                  {{ form.Nome_do_Verificador.errors }}
+                                  {{ form.Nome_do_Verificador }}
+                              </td>
+                          </tr>
+                         <tr>
+                              <th>{{ form.Data_de_Verificacao.label_tag }}</th>
+                              <td>
+                                  {{ form.Data_de_Verificacao.errors }}
+                                  {{ form.Data_de_Verificacao }}
+                              </td>
+                          </tr>
 
+                      </table>
+                    <button id ='update_form' type="button" style="width:80%; cursor: pointer " onclick="document.getElementById('forma').submit();">Atualizar!</button>
+                </form>
+        {% endblock %}
+        </div>
         <div id=canisterdiv>
-             <div id=candiv1 class="candiv">
+            <div id=candiv1 class="candiv">
                  <div class="clock">
                         <img src="{%  static 'images/valveg.jpg'%}" alt=valve">
                  </div>
-                 <div class = "canister3" id=div04 >
-                     <button class="popup" onclick="gas_info(0)">Ar Sintético</button>
+                 <div class = "canister3" id=div03>
+                    <button class="popup" onclick="gas_info(0)" type="button">Ar Sintético</button>
                      <div class = "divte">
                          {% for gas in all_gases %}
                             {% if gas.name == 'Ar Sintético' %}
-                                <br>Volume Atual: {{ gas.cvol }} kgf<br>
-                                <br>Porcentagem: {{ gas.porcentage}}%<br>
+                                Volume Atual: <br>{{ gas.cvol }} kgf<br>
+                                <br>Porcentagem: {{ gas.porcentage }}%<br>
+                                <br>Último Reabastecimento: <br> {{ gas.ver_date }}
                             {% endif %}
                          {% endfor %}
-                         <br>Último Reabastecimento: <br>17/09/2018
                      </div>
                  </div>
-             </div>
+            </div>
             <div id=candiv2 class="candiv">
                  <div class="clock">
                         <img src="{%  static 'images/valveg.jpg'%}" alt=valve">
                  </div>
                  <div class = "canister2" id=div03>
-                    <button class="popup" onclick="gas_info(1)">Hidrogênio</button>
+                    <button class="popup" onclick="gas_info(1)" type="button">Hidrogênio</button>
                      <div class = "divte">
                          {% for gas in all_gases %}
                             {% if gas.name == 'Hidrogênio' %}
-                                <br>Volume Atual: {{ gas.cvol }} kgf<br>
+                                Volume Atual: <br>{{ gas.cvol }} kgf<br>
                                 <br>Porcentagem: {{ gas.porcentage }}%<br>
+                                <br>Último Reabastecimento: <br> {{ gas.ver_date }}
                             {% endif %}
                          {% endfor %}
-                         <br>Último Reabastecimento: <br>17/09/2018
                      </div>
                  </div>
             </div>
@@ -54,16 +84,15 @@
                         <img src="{%  static 'images/valveg.jpg'%}" alt=valve">
                     </div>
                    <div class = "canister" id=div05>
-                    <button class="popup" onclick="gas_info(2)">Hélio </button>
+                    <button class="popup" onclick="gas_info(2)" type="button">Hélio </button>
                      <div class = "divte">
                          {% for gas in all_gases %}
                             {% if gas.name == 'Hélio' %}
-                                <br>Volume Atual: <br>{{ gas.cvol }} kpa<br>
+                                Volume Atual: <br>{{ gas.cvol }} kpa<br>
                                 <br>Porcentagem: {{ gas.porcentage }}%<br>
-
+                                <br>Último Reabastecimento: <br> {{ gas.ver_date }}
                             {% endif %}
                          {% endfor %}
-                         <br>Último Reabastecimento: <br>17/09/2018
                      </div>
                    </div>
             </div>
@@ -87,7 +116,7 @@
 
 function gas_info(index){
     var gases = '{{ json_gases|escapejs }}';
-    console.log(gases)
+    console.log(gases);
     var divs = document.getElementsByClassName("divte")[index];
     console.log(divs.display);
     if (divs.display = "hidden"){

@@ -5,7 +5,13 @@
 {% block maindiv %}
 <div id="maindiv">
     HELLO GAS = {{ context_variable }}</div>
-
+        {% block forma %}
+            <a href="{% url 'test' %}"></a>
+            <form method="POST" id="form" style="color: black">{% csrf_token %}>
+                {{ form.as_p }}
+                <button type="submit" class="save btn btn-default">Save</button>
+            </form>
+        {% endblock %}
 {% endblock %}
 
 {% block script %}
