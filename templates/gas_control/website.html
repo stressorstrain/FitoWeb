@@ -12,16 +12,24 @@
                     {% csrf_token %}
                       <table style="width:100%; text-align: left;"><br>Atualização de Volumes
                           <tr>
-                              <th class="formth">{{ form.Gas.label_tag }}</th>
+                              <th class="formth">{{ form.Ar_Sintético.label_tag}}</th>
                               <td style="width:100%">
-                                  {{ form.Gas }}
+                                  {{ form.Ar_Sintético.errors}}
+                                  {{ form.Ar_Sintético }}
                               </td>
                           </tr>
                          <tr>
-                              <th>{{ form.Volume_Verificado.label_tag }}</th>
+                              <th>{{ form.Hidrogênio.label_tag }}</th>
                               <td>
-                                  {{ form.Volume_Verificado.errors }}
-                                  {{ form.Volume_Verificado }}
+                                  {{ form.Hidrogênio.errors }}
+                                  {{ form.Hidrogênio }}
+                              </td>
+                          </tr>
+                         <tr>
+                              <th>{{ form.Hélio.label_tag }}</th>
+                              <td>
+                                  {{ form.Hélio.errors }}
+                                  {{ form.Hélio }}
                               </td>
                           </tr>
                          <tr>
@@ -38,7 +46,6 @@
                                   {{ form.Data_de_Verificacao }}
                               </td>
                           </tr>
-
                       </table>
                     <button id ='update_form' type="button" style="width:80%; cursor: pointer " onclick="document.getElementById('forma').submit();">Atualizar!</button>
                 </form>
@@ -49,15 +56,13 @@
                  <div class="clock">
                         <img src="{%  static 'images/valveg.jpg'%}" alt=valve">
                  </div>
-                 <div class = "canister3" id=div03>
+                 <div class = "canister3" id=div01>
                     <button class="popup" onclick="gas_info(0)" type="button">Ar Sintético</button>
                      <div class = "divte">
                          {% for gas in all_gases %}
-                            {% if gas.name == 'Ar Sintético' %}
-                                Volume Atual: <br>{{ gas.cvol }} kgf<br>
-                                <br>Porcentagem: {{ gas.porcentage }}%<br>
+                                Volume Atual: <br>{{ gas.ars }} kgf<br>
+                                <br>Porcentagem: {{ gas.ars_p }}%<br>
                                 <br>Último Reabastecimento: <br> {{ gas.ver_date }}
-                            {% endif %}
                          {% endfor %}
                      </div>
                  </div>
@@ -70,11 +75,9 @@
                     <button class="popup" onclick="gas_info(1)" type="button">Hidrogênio</button>
                      <div class = "divte">
                          {% for gas in all_gases %}
-                            {% if gas.name == 'Hidrogênio' %}
-                                Volume Atual: <br>{{ gas.cvol }} kgf<br>
-                                <br>Porcentagem: {{ gas.porcentage }}%<br>
+                                Volume Atual: <br>{{ gas.h2 }} kgf<br>
+                                <br>Porcentagem: {{ gas.h2_p }}%<br>
                                 <br>Último Reabastecimento: <br> {{ gas.ver_date }}
-                            {% endif %}
                          {% endfor %}
                      </div>
                  </div>
@@ -87,11 +90,9 @@
                     <button class="popup" onclick="gas_info(2)" type="button">Hélio </button>
                      <div class = "divte">
                          {% for gas in all_gases %}
-                            {% if gas.name == 'Hélio' %}
-                                Volume Atual: <br>{{ gas.cvol }} kpa<br>
-                                <br>Porcentagem: {{ gas.porcentage }}%<br>
+                                Volume Atual: <br>{{ gas.he }} kpa<br>
+                                <br>Porcentagem: {{ gas.he_p }}%<br>
                                 <br>Último Reabastecimento: <br> {{ gas.ver_date }}
-                            {% endif %}
                          {% endfor %}
                      </div>
                    </div>
@@ -101,19 +102,38 @@
     <div id=graphs>
         <div id=graphs2>Ultima Verificação: 01/10/2018 - Guilherme Niederauer
         </div>
-        <div class="inline-block">
-            <img src="{%  static 'images/ars_h2.png'%}" alt ="ars" style="float: left; width: 48%; height: 80%; margin-left: 1%;">
-            <img src="{%  static 'images/helio.png' %}" alt ="he" style="float: right; width: 50%; height: 80%; margin-left: 1%;">
-        </div>
+            {% block chart %}
+                <div style="margin-top:8%">
+                    <img id='heplot' src="{%  static 'images/heplot.png' %}" style="float: left; width: 48%; height: 90%; margin-top: -10%">
+                    <img id='2plot' src="{%  static 'images/doubplot.png' %}" style="float: right; width: 48%; height: 90%; margin-top: -10%">
+
+                </div>
+            {% endblock chart %}
     </div>
 </div>
 
 {% endblock %}
 
+
 {% block script %}
 
 <script>
+update_img();
+{% for gas in all_gases %}
+    var ars = {{gas.ars_p}};
+    var h2 = {{gas.h2_p}};
+    var he = {{gas.he_p}};
+    can_volume(ars, 'div01','#70040D' );
+    can_volume(h2, 'div03', '#0000FF');
+    can_volume(he, 'div05', '#008000');
+{% endfor %}
 
+function update_img(){
+    document.getElementById('heplot').src = "{%  static 'images/heplot.png' %}";
+    document.getElementById('2plot').src = "{%  static 'images/doubplot.png' %}";
+    console.log("vai")
+
+}
 function gas_info(index){
     var gases = '{{ json_gases|escapejs }}';
     console.log(gases);
@@ -135,30 +155,12 @@ var current_vol = [vol_he, vol_ars, vol_h];
 percentage(max_volumes, current_vol);
 }
 
-
-function percentage(max_volumes, current_vol){
-var gases = ["div04", "div03", "div05"];
-var glength = gases.length;
-var i;
-var cur;
-var maxs;
-var vol_porc;
-for (i=0; i < glength; i++) {
-	maxs = max_volumes[i];
-	cur = current_vol[i];
-	vol_porc = parseInt((cur*100)/(maxs), 10);
-	display(gases, i, vol_porc);
-	}
-}
-
-
-function display(gases, i, porc) {
-	var gas = gases[i];
-	var porc2 = 100 - porc;
-	console.log(porc);
-	var canis_color0 = ['rgba(201,146,137,1)', 'rgba(235,255,232,1)', 'rgba(191,232,255,1)'];
-	var canis_color1 = ['rgba(128,8,8,1) 100%', 'rgba(0,128,0,1) 100%)', 'rgba(0,0,255,1) 100%)'];
-    document.getElementById(gas).style.background = 'linear-gradient(to bottom,' + canis_color0[i]+ ' ' + porc2 + '%, ' +canis_color1[i];
+function can_volume(porc, id, color){
+        console.log("voce");
+        var vol = 100 - (porc+20);
+        console.log(porc,vol);
+        document.getElementById(id).style.background = 'linear-gradient(to bottom, #FFFFFF '+vol+'%, '+color+' 100%)';
+        console.log(document.getElementById(id).style.background)
 }
 function popups(gase) {
 	var gas = ["ars", "h2", "he"];
