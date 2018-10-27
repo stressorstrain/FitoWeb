@@ -1,0 +1,18 @@
+{% extends 'registration/base.html' %}
+{% load static %}
+
+{%  block maindiv %}
+    <div id="maindiv">
+        <div id="userformdiv" style="height: 50%">
+            <h1> Autenticação</h1>
+            {% block forma %}
+            <form method="POST" id="login-form" >
+            {% csrf_token %}
+            {{ form }}
+             <button type="button" onclick = "document.getElementById('login-form').submit();" style="width: 45%; margin-right: 1%">Logar! </button>
+            </form>
+            {% endblock %}
+
+        </div>
+    </div>
+{%  endblock %}

@@ -1,11 +1,9 @@
-from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login
-from django.views.generic import View
-from .models import Gas, Usuarios
+from django.shortcuts import render
+from .models import Gas
 from django.core import serializers
-from .forms import PostForm, UserForm, UserCreationForm
-from django.http import JsonResponse
+from .forms import PostForm
 from .gas import *
+from django.contrib.auth.decorators import login_required
 json_serializer = serializers.get_serializer("json")()
 json_gases = json_serializer.serialize(Gas.objects.all().order_by('id'), ensure_ascii=False)
 
@@ -15,21 +13,19 @@ def post_new(request):
 
 
 def basic(request):
-    return render(request, 'gas_control/base.html', {})
+    return render(request, 'base.html', {})
 
 
 def chart(request):
     return render(request, 'gas_control/chart.html', {})
 
-
+@login_required
 def gases(request):
     all_gases = Gas.objects.all().order_by('-id')[:1]
 
     if request.method == 'POST':
         form = PostForm(request.POST)
         if form.is_valid():
-            #name = form.cleaned_data['Gas']
-            #cvol = form.cleaned_data['Volume_Verificado']
             ars = form.cleaned_data['Ar_Sintético']
             ars_p = porcentagem(ars, 'ars')
             h2 = form.cleaned_data['Hidrogênio']
@@ -38,12 +34,12 @@ def gases(request):
             he_p = porcentagem(he, 'he')
             ver_name = form.cleaned_data['Nome_do_Verificador']
             ver_date = form.cleaned_data['Data_de_Verificacao']
-            info = (str(ver_date)+"\t"+str(ars)+"\t"+str(h2)+"\t"+str(he))
-            start(info)
+            new_data = (str(ver_date)+"\t"+str(ars)+"\t"+str(h2)+"\t"+str(he))
+            start(new_data)
             data = Gas(ars=ars, h2=h2, he=he, ars_p=ars_p, h2_p=h2_p, he_p=he_p, ver_name=ver_name, ver_date=ver_date)
             data.save()
 
-            return render(request, 'gas_control/website.html', {'all_gases': all_gases,'form': form})
+            return render(request, 'gas_control/website.html', {'all_gases': all_gases, 'form': form})
 
     else:
 
@@ -64,37 +60,3 @@ def porcentagem(cvol, ind):
     elif ind in he:
         mvol = 150
         return(cvol*100)/mvol
-
-
-def register(request):
-
-
-    if request.method == "POST":
-
-        form = UserForm(request.POST)
-
-        if form.is_valid():
-            print("é sim po")
-            # cleaned (normalized) data
-            username = form.cleaned_data['username']
-            password1 = form.cleaned_data['password1']
-            password2 = form.cleaned_data['password2']
-
-            first_name = form.cleaned_data['first_name']
-            last_name = form.cleaned_data['last_name']
-            email = form.cleaned_data['email']
-            form.save()
-            return redirect('/')
-
-    else:
-        form = UserForm()
-
-        return render(request, 'gas_control/userc.html',{'form': form})
-
-
-
-
-
-
-
-

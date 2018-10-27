@@ -1,0 +1,61 @@
+{% extends 'accounts/base.html' %}
+{% load static %}
+
+{%  block maindiv %}
+    <div id="maindiva">
+        <div id="maintop">
+            <div class="square">
+                <div id="avatar">
+                    avatar
+                </div>
+                <div id="info">
+                    info
+                </div>
+            </div>
+            <div class="square">
+                <h1> Projeto Atual</h1>
+                <table>
+                    <tr>
+                        <th>Tabelas</th>
+                        <th> Docs </th>
+                        <th>Referencias</th>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>1</td>
+                        <td style="border-right: 0 solid black;">1</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>1</td>
+                        <td style="border-right: 0 solid black;">1</td>
+                    </tr>
+                    <tr>
+                        <td >1</td>
+                        <td >1</td>
+                        <td style="border-right: 0 solid black;">1</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="square">
+                oi
+            </div>
+        </div>
+        <div id="mainbottom">
+            <div class="square">
+
+            </div>
+            <div class="square">
+
+            </div>
+            <div class="square">
+
+            </div>
+
+        </div>
+    </div>
+{%  endblock maindiv %}
+<button style="position: fixed; bottom: 0; right: 0;" onclick="location.href='/accounts/logout/'">Sair</button>
+
+{% block script %}
+{% endblock script %}

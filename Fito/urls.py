@@ -15,9 +15,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-
+import django.contrib.auth.urls
+from accounts.forms import CustomAuthForm
 
 urlpatterns = [
+    path('gas_control/', include('gas_control.urls')),
     path('admin/', admin.site.urls),
-    path('', include('gas_control.urls'))
+    path('', include('accounts.urls')),
+    path('accounts/', include('accounts.urls')),
 ]

@@ -1,4 +1,4 @@
-{% extends 'gas_control/base.html' %}
+{% extends 'accounts/base.html' %}
 {% load static %}
 
 {%  block maindiv %}
@@ -9,7 +9,7 @@
             {% block forma %}
             <form method="POST" id="forma">
             {% csrf_token %}
-                {{form }}
+                {{form}}
                 <button type="button" onclick = "document.getElementById('forma').submit();" style="width: 45%; margin-right: 1%">Cadastrar! </button>
             </form>
             {% endblock %}

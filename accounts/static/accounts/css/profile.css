@@ -1,0 +1,49 @@
+#maindiva{
+    background-color: black;
+    height:100%;
+    width: 100%;
+}
+#maintop{
+    background-color: green;
+    height:50%;
+    width: 100%;
+
+}
+#mainbottom{
+    background-color: blue;
+    height:50%;
+    width: 100%;
+
+}
+.square{
+    width: 33%;
+    /* border: 3px solid black;*/
+    background: #70040D;
+    height: 100%;
+    float:left;
+}
+#avatar{
+    background: #DAFFCA;
+    height: 50%;
+    width: 40%;
+    margin-left: 28%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+
+}
+#info{
+    background-color: #6B6464;
+    height: 46%;
+    width: 100%;
+}
+table, tr{
+    width: 100%;
+    font-size: 120%;
+
+}
+
+td{
+    text-align: center;
+    width: 30%;
+    border-right: 3px solid black;
+}
