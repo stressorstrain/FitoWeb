@@ -3,59 +3,171 @@
 
 {%  block maindiv %}
     <div id="maindiva">
-        <div id="maintop">
+        <div id="mainbottom">
             <div class="square">
-                <div id="avatar">
-                    avatar
-                </div>
-                <div id="info">
-                    info
+                <div id="avisos">
+                    <h1 style="font-size: 160%;">Guilherme Francio Niederauer</h1>
+                    <div id="avatar">
+                        <img src="{% static 'accounts/images/avatar.jpg' %}" style="max-width:100%;min-height:100%;">
+                    </div>
+                    <div id="info">
+                        <p style="float:left; margin-left: 5%; font-size: 120%;">INFO</p>
+                    </div>
                 </div>
             </div>
-            <div class="square">
-                <h1> Projeto Atual</h1>
-                <table>
-                    <tr>
-                        <th>Tabelas</th>
-                        <th> Docs </th>
-                        <th>Referencias</th>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>1</td>
-                        <td style="border-right: 0 solid black;">1</td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>1</td>
-                        <td style="border-right: 0 solid black;">1</td>
-                    </tr>
-                    <tr>
-                        <td >1</td>
-                        <td >1</td>
-                        <td style="border-right: 0 solid black;">1</td>
-                    </tr>
-                </table>
+            <div class = "square" style="width: 45%; ">
+                    <div id="avisos">
+                    <h1 style="font-size: 160%;"> Projeto Atual </h1>
+                    <table>
+                        <tr>
+                            <th>Tabelas</th>
+                            <th> Docs </th>
+                            <th>Referencias</th>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>1</td>
+                            <td style="border-right: 0 solid black;">1</td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>1</td>
+                            <td style="border-right: 0 solid black;">1</td>
+                        </tr>
+                        <tr>
+                            <td >1</td>
+                            <td >1</td>
+                            <td style="border-right: 0 solid black;">1</td>
+                        </tr>
+                    </table>
+                    </div>
             </div>
-            <div class="square">
-                oi
+            <div class = "square" style="width: 22%;">
+                    <div id="avisos">
+                    <h1 style="font-size: 160%;"> Avisos </h1>
+                    </div>
             </div>
         </div>
         <div id="mainbottom">
             <div class="square">
-
+                <div id="avisos">
+                    <h1 style="font-size: 160%;">Projetos</h1>
+                </div>
             </div>
-            <div class="square">
+            <div class = "square" style="width: 45%; ">
+                    <div id="avisos">
+                    <h1 style="font-size: 160%;"> Calendário </h1>
+                        <div id="calendar">
+                            <div id="calendar-container">
+                                <div id="calendar-header">
+                                    <span id="calendar-month-year"></span>
 
+                                </div>
+                                <div id="calendar-dates">
+                                </div><br>
+                                    <div class="tooltip">
+                                        <span class="tooltiptext">Clique no dia para adicionar uma nota.</span>
+                                    </div>
+
+                            </div>
+                        </div>
+                    </div>
             </div>
-            <div class="square">
+            <div class = "square" style="width: 22%;">
+                    <div id="avisos">
+                    <h1 style="font-size: 160%;"> Datas Importantes </h1>
 
+                    </div>
             </div>
-
         </div>
     </div>
+
 {%  endblock maindiv %}
 <button style="position: fixed; bottom: 0; right: 0;" onclick="location.href='/accounts/logout/'">Sair</button>
 
 {% block script %}
+<script>
+window.onload = calendar();
+function calendar() {
+    var d = new Date();
+    var month_name = ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
+    var month = d.getMonth();   //0-11
+    var year = d.getFullYear(); //2014
+    var first_date = month_name[month] + " " + 1 + " " + year;
+    //September 1 2014
+    var tmp = new Date(first_date).toDateString();
+    //Mon Sep 01 2014 ...
+    var first_day = tmp.substring(0, 3);    //Mon
+    var day_name = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+    var day_no = day_name.indexOf(first_day);   //1
+    var days = new Date(year, month+1, 0).getDate();    //30
+    //Tue Sep 30 2014 ...
+    var calendar = get_calendar(day_no, days);
+    document.getElementById("calendar-month-year").innerHTML = month_name[month]+" "+year;
+    document.getElementById("calendar-dates").appendChild(calendar);
+
+}
+function get_calendar(day_no, days){
+    var table = document.createElement('table');
+    table.setAttribute("id", "caltab");
+    var tr = document.createElement('tr');
+    //row for the day letters
+    for(var c=0; c<=6; c++){
+        var td = document.createElement('td');
+        td.innerHTML = "DSTQQSS"[c];
+        tr.appendChild(td);
+    }
+    table.appendChild(tr);
+
+
+    //create 2nd row
+    tr = document.createElement('tr');
+    var c;
+    for(c=0; c<=6; c++){
+        if(c == day_no){
+            break;
+        }
+        var td = document.createElement('td');
+        td.addEventListener("click",function(){
+            alert("cell clicked");
+        });
+        td.innerHTML = "";
+        tr.appendChild(td);
+    }
+
+    var count = 1;
+    for(; c<=6; c++){
+        var td = document.createElement('td');
+        td.addEventListener("click",function(){
+            console.log("cell clicked");
+            });
+        td.innerHTML = count;
+        count++;
+        tr.appendChild(tad);
+    }
+    table.appendChild(tr);
+
+    //rest of the date rows
+    for(var r=3; r<=7; r++){
+        tr = document.createElement('tr');
+        for(var c=0; c<=6; c++){
+            if(count > days){
+                table.appendChild(tr);
+                return table;
+            }
+            var td = document.createElement('td');
+            td.addEventListener("click",function(){
+            console.log("cell clicked");
+            });
+            td.innerHTML = count;
+            count++;
+            tr.appendChild(td);
+        }
+        table.appendChild(tr);
+    }
+    return table;
+
+}
+
+</script>
 {% endblock script %}
