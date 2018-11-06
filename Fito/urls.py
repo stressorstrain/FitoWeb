@@ -14,13 +14,21 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, include
-import django.contrib.auth.urls
-from accounts.forms import CustomAuthForm
+from django.urls import path, include, re_path
+from django.conf import settings
+from django.views.static import serve
+
+from . import  views
 
 urlpatterns = [
     path('gas_control/', include('gas_control.urls')),
     path('admin/', admin.site.urls),
-    path('', include('accounts.urls')),
+    path('', views.basic),
     path('accounts/', include('accounts.urls')),
+
 ]
+
+if settings.DEBUG:
+    urlpatterns += [
+        re_path(r'^media/(?P<path>.*)$', serve, {'document_root':settings.MEDIA_ROOT, })
+    ]

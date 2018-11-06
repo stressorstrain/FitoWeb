@@ -5,7 +5,7 @@ from .forms import PostForm
 from .gas import *
 from django.contrib.auth.decorators import login_required
 json_serializer = serializers.get_serializer("json")()
-json_gases = json_serializer.serialize(Gas.objects.all().order_by('id'), ensure_ascii=False)
+#json_gases = json_serializer.serialize(Gas.objects.all().order_by('id'), ensure_ascii=False)
 
 
 def post_new(request):
@@ -18,6 +18,7 @@ def basic(request):
 
 def chart(request):
     return render(request, 'gas_control/chart.html', {})
+
 
 @login_required
 def gases(request):

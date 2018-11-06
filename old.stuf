@@ -1,0 +1,190 @@
+
+
+def get_image_path(instance, filename):
+    return os.path.join('/home/guibax/PycharmProjects/Fito/accounts/static/accounts/profiles/Guilherme_Niederauer/avatar.jpg', str(instance.id), filename)
+
+
+class UserProfile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name ='profile')
+    cargo = models.PositiveSmallIntegerField(choices=CARGO_CHOICES, default=1)
+    role = models.PositiveSmallIntegerField(choices=ROLE_CHOICES, null=True, blank=True, default=1)
+    avatar = models.ImageField(blank=True, null=True, upload_to='accounts/')
+
+    def __str__(self):
+        return self.user.username
+
+
+def create_user_profile(sender, instance, created, **kwargs):
+    if created:
+        UserProfile.objects.create(user=instance)
+    instance.profile.save()
+
+
+post_save.connect(create_user_profile, sender=User)
+
+def register(request):
+    if request.method == "POST":
+        form1 = UserCreationForm(request.POST)
+        form3 = CustomAuthForm()
+        print(form1.error_messages)
+        if form1.is_valid():
+            print("valid")
+            form1.save()
+            username = form1.cleaned_data.get('username')
+            raw_password = form1.cleaned_data.get('password1')
+            user = authenticate(username=username, password=raw_password)
+            login(request, user)
+
+        else:
+            print("not valid")
+
+        return redirect('accounts:login')
+
+    else:
+        form = UserForm()
+
+        return render(request, 'accounts/userc.html', {'form': form})
+from django import forms
+from django.forms.widgets import PasswordInput, TextInput
+from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserCreationForm
+from .accoutns_choices import *
+from django.db import models
+from .models import UserProfile
+
+
+class CustomAuthForm(forms.Form):
+    username = forms.CharField(
+        label='Username',
+        required=True,
+        widget=TextInput(
+            attrs={'style': 'font-size: 120%; width:50%; height:10%; margin-left:24%',
+                   }
+        )
+    )
+    password = forms.CharField(
+        label='Senha',
+        required=True,
+        widget=PasswordInput(
+            attrs={'style': 'font-size: 120%; width:50%; height:2%; margin-left:24%',
+                   }
+        )
+    )
+
+
+class UserForm(UserCreationForm):
+    first_name = forms.CharField(
+        label="Nome",
+        max_length=100,
+        required=True,
+        widget=forms.TextInput(
+            attrs={
+                'style': 'font-size: 120%; width:50%; height:7%; margin-left:24%',
+                'placeholder': 'primeiro nome'
+            }
+        )
+    )
+    last_name = forms.CharField(
+        label='Sobrenome',
+        max_length=100,
+        required=True,
+        widget=forms.TextInput(
+            attrs={
+                'style': 'font-size: 120%; width:50%; height:7%; margin-left:24%',
+                'placeholder': 'sobrenome'
+            }
+        )
+    )
+    email = forms.EmailField(
+        max_length=100,
+        required=True,
+        widget=forms.EmailInput(
+            attrs={
+                'placeholder': 'email@mail.com'
+            }
+        )
+    )
+    cargo = forms.ChoiceField(choices=CARGO_CHOICES)
+    # profile_image = models.ImageField(upload_to =get_image_path, blank=True, null=True)
+    role = forms.ChoiceField(choices=ROLE_CHOICES)
+    avatar = forms.ImageField()
+
+    class Meta:
+        model = User
+        fields = ('username', 'first_name', 'last_name', 'email', 'password1', 'password2',)
+
+
+first_name = forms.CharField(
+        label="Nome",
+        max_length=100,
+        required=True,
+        widget=forms.TextInput(
+            attrs={
+                'style': 'font-size: 120%; width:50%; height:7%; margin-left:24%',
+                'placeholder': 'primeiro nome'
+            }
+        )
+    )
+    last_name = forms.CharField(
+        label='Sobrenome',
+        max_length=100,
+        required=True,
+        widget=forms.TextInput(
+            attrs={
+                'style': 'font-size: 120%; width:50%; height:7%; margin-left:24%',
+                'placeholder': 'sobrenome'
+            }
+        )
+    )
+    username = forms.CharField(
+        max_length=12,
+        required=True,
+        widget=forms.TextInput(
+            attrs={
+                'style': 'font-size: 120%; width:50%; height:7%; margin-left:24%',
+                'placeholder': 'nome de usuário'
+            }
+        )
+    )
+    password = forms.CharField(
+        label='Senha',
+        required=True,
+        widget=PasswordInput(
+            attrs={'style': 'font-size: 120%; width:50%; height:2%; margin-left:24%',
+                   }
+        )
+    )
+    Categoria = forms.ChoiceField(
+        choices=ROLE_CHOICES,
+        required=True,
+        widget=forms.Select(
+            attrs={
+                'style': 'font-size: 100%; width:50%; height:7%; margin-left:24%'}
+        )
+    )
+    Nível = forms.ChoiceField(
+        choices=CARGO_CHOICES,
+        required=True,
+        widget=forms.Select(
+            attrs={
+                'style': 'font-size: 100%; width:50%; height:7%; margin-left:24%'}
+        )
+    )
+    email = forms.CharField(
+        max_length=100,
+        required=True,
+        widget=forms.EmailInput(
+            attrs={
+                'placeholder': 'email@mail.com'
+            }
+        )
+    )
+
+    avatar = forms.ImageField(label='Avatar', required=False)
+
+    cargo = forms.ChoiceField(choices=CARGO_CHOICES)
+    role = forms.ChoiceField(choices=ROLE_CHOICES)
+
+    class Meta(UserCreationForm.Meta):
+        model = User
+        fields = UserCreationForm.Meta.fields + ('first_name', 'last_name', 'email',)

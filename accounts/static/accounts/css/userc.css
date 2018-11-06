@@ -27,3 +27,14 @@ input[type=password] {
     margin-bottom: 2% ;
 
 }
+#create{
+    cursor:pointer;
+    width: 45%;
+    margin-right: 1%;
+    margin-top: 2%;
+    font-size:120%;
+}
+
+input{
+    font-size: 120%;
+}

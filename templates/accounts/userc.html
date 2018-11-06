@@ -7,10 +7,11 @@
             <h1> Cadastro de Aluno</h1>
 
             {% block forma %}
-            <form method="POST" id="forma">
+            <form method="POST" id="forma" enctype="multipart/form-data">
             {% csrf_token %}
-                {{form}}
-                <button type="button" onclick = "document.getElementById('forma').submit();" style="width: 45%; margin-right: 1%">Cadastrar! </button>
+                {{form.as_p}}
+                {{form2.as_p }}
+                <button id="create" type="button" onclick = "document.getElementById('forma').submit();">Cadastrar! </button>
             </form>
             {% endblock %}
 
