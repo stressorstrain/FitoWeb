@@ -1,9 +1,12 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
-from .forms import CustomAuthForm, RegistrationForm, ProfileForm
-from .models import UserProfile
+from .forms import CustomAuthForm, RegistrationForm, ProfileForm, ProjectsForm, UserUploadsForms
+from .models import UserProfile, UserProjects, UserUploads
 from django.contrib.auth.forms import UserCreationForm
+
+from django.core import serializers
+
 
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
@@ -33,9 +36,44 @@ def log_in(request):
 
 
 def profile(request, username):
-    all_profiles =  UserProfile.objects.all()
+
+    if request.method == "POST":
+        p_form = ProjectsForm(request.POST)
+        doc_form = UserUploadsForms(request.POST, request.FILES)
+        if p_form.is_valid():
+            user = request.user
+            username = str(user)
+            projeto = p_form.cleaned_data['projeto']
+            data = p_form.cleaned_data['data']
+            project = UserProjects(username=user, projeto=projeto, data=data)
+            project.save()
+
+        elif doc_form.is_valid():
+            username = request.user.username
+            doc = doc_form.cleaned_data['docname']
+            type = doc_form.cleaned_data['type']
+            instance = UserUploads(username=username, docname=doc, type=type, file=request.FILES['file'])
+            instance.save()
+
+    all_docs = UserUploads.objects.all()
+    all_profiles = UserProfile.objects.all()
     all_users = User.objects.all()
-    return render(request, 'accounts/profile.html', {'users': all_users, 'profiles': all_profiles, 'username': username})
+    all_projects = UserProjects.objects.all()
+    documents = UserUploadsForms()
+    project_form = ProjectsForm()
+
+    return render(request,
+                  'accounts/profile.html',
+                   {
+                       'users': all_users,
+                       'profiles': all_profiles,
+                       'username': username,
+                       'projects': all_projects,
+                       'project_form': project_form,
+                       'doc_form': documents,
+                       'all_docs': all_docs,
+                    }
+                  )
 
 
 def log_out(request):
@@ -61,9 +99,8 @@ def register(request):
             user.save()
 
             avatar = form2.cleaned_data["avatar"]
-            profile = UserProfile(user=user, avatar=avatar)
-            profile.save()
-
+            profiles = UserProfile(user=user, avatar=avatar)
+            profiles.save()
 
         else:
             print("not valid")

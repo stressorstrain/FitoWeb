@@ -17,13 +17,13 @@ from django.contrib import admin
 from django.urls import path, include, re_path
 from django.conf import settings
 from django.views.static import serve
-
-from . import  views
+from . import views
+from accounts import views as aviews
 
 urlpatterns = [
     path('gas_control/', include('gas_control.urls')),
     path('admin/', admin.site.urls),
-    path('', views.basic),
+    path('', aviews.log_in),
     path('accounts/', include('accounts.urls')),
 
 ]

@@ -86,10 +86,20 @@ function add_project(){
     parent.appendChild(element)
 
 }
-function openForm() {
-    document.getElementById("myForm").style.display = "block";
+function openForm(element) {
+    var id = document.getElementById(element);
+    id.style.visibility = "visible";
 }
 
-function closeForm() {
-    document.getElementById("myForm").style.display = "none";
+function closeForm(element) {
+    var id = document.getElementById(element);
+    id.style.visibility = "hidden";
+}
+function go_project(projeto){
+
+    document.getElementById('heder').innerText = 'Projeto Atual: ' + projeto;
+
+}
+function upload() {
+    document.getElementById('doc_form').style.visibility ="visible";
 }

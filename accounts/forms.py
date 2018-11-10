@@ -2,7 +2,7 @@ from django import forms
 from django.forms.widgets import PasswordInput, TextInput
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
-from .models import UserProfile
+from .models import UserProfile, UserProjects, UserUploads
 from .accoutns_choices import *
 from django.db import models
 
@@ -77,3 +77,54 @@ class ProfileForm(forms.ModelForm):
     class Meta:
         model = UserProfile
         fields = ('avatar',)
+
+
+class ProjectsForm(forms.Form):
+    projeto = forms.CharField(
+        max_length=200,
+        label='Nome Do Projeto',
+        required=True,
+        widget=TextInput(
+            attrs={'style': 'font-size: 120%; width:50%; height:10%;',
+                   }
+        )
+    )
+    data = forms.CharField(
+        max_length=200,
+        label='Data de Execução',
+        required=True,
+        widget=TextInput(
+            attrs={'style': 'font-size: 120%; width:50%; height:10%;',
+                   }
+        )
+    )
+
+    class Meta:
+        model: UserProjects
+        fields = ('projeto', 'data', )
+
+
+class UserUploadsForms(forms.Form):
+    docname = forms.CharField(
+        max_length=30,
+        label='Nome do Documento',
+        required=True,
+        widget=TextInput(
+            attrs={'style': 'font-size: 200%; width:50%; height:10%;',
+                   }
+        )
+
+    )
+    file = forms.FileField()
+    type = forms.ChoiceField(
+        choices=DOC_TYPES,
+        required=True,
+        widget=forms.Select(
+            attrs={
+                'style': 'font-size: 80%; width:50%; height:7%; margin-left:24%'}
+        )
+    )
+
+    class Meta:
+        model: UserUploads
+        fields = ('docname', 'file', 'type')
