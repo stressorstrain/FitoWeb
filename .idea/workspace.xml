@@ -3,19 +3,13 @@
   <component name="ChangeListManager">
     <list default="true" id="860b7f05-3f8b-46c3-a31f-58a6677025e3" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Fito/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/Fito/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/accoutns_choices.py" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/accoutns_choices.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/accounts/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/admin.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/accounts/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/forms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/migrations/0001_initial.py" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/migrations/0001_initial.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/migrations/0002_auto_20181105_2125.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/migrations/0003_auto_20181105_2130.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/migrations/0004_auto_20181105_2302.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/accounts/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/accounts/static/accounts/css/profile.css" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/static/accounts/css/profile.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/accounts/static/accounts/js/profile.js" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/static/accounts/js/profile.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/accounts/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/accounts/1541258934/avatar.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/accounts/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/accounts/base.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/accounts/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/accounts/profile.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -52,7 +46,7 @@
     <session id="-953527656">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="41" />
+          <entry key="project.closed" value="42" />
           <entry key="project.open.time.14" value="1" />
           <entry key="project.open.time.20" value="1" />
           <entry key="project.open.time.21" value="3" />
@@ -64,150 +58,72 @@
           <entry key="project.open.time.43" value="1" />
           <entry key="project.open.time.44" value="1" />
           <entry key="project.open.time.46" value="2" />
-          <entry key="project.open.time.47" value="2" />
+          <entry key="project.open.time.47" value="3" />
           <entry key="project.open.time.48" value="2" />
           <entry key="project.open.time.49" value="2" />
           <entry key="project.open.time.5" value="1" />
           <entry key="project.open.time.50" value="3" />
           <entry key="project.open.time.51" value="1" />
-          <entry key="project.open.time.52" value="2" />
+          <entry key="project.open.time.52" value="3" />
           <entry key="project.open.time.53" value="1" />
           <entry key="project.open.time.54" value="2" />
           <entry key="project.open.time.55" value="1" />
-          <entry key="project.open.time.58" value="1" />
+          <entry key="project.open.time.58" value="2" />
           <entry key="project.open.time.59" value="2" />
           <entry key="project.open.time.61" value="1" />
           <entry key="project.open.time.63" value="1" />
           <entry key="project.open.time.65" value="2" />
           <entry key="project.open.time.69" value="2" />
           <entry key="project.open.time.76" value="1" />
-          <entry key="project.opened" value="43" />
+          <entry key="project.opened" value="46" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="css" value="4248" />
+          <entry key="css" value="4645" />
           <entry key="dummy" value="5" />
-          <entry key="html" value="13162" />
-          <entry key="js" value="661" />
-          <entry key="py" value="28903" />
+          <entry key="html" value="14295" />
+          <entry key="js" value="3899" />
+          <entry key="py" value="31251" />
           <entry key="txt" value="56" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="CSS" value="4248" />
+          <entry key="CSS" value="4645" />
           <entry key="DjangoUrlPath" value="1" />
-          <entry key="HTML" value="13162" />
-          <entry key="JavaScript" value="661" />
+          <entry key="HTML" value="14295" />
+          <entry key="JavaScript" value="3899" />
           <entry key="PLAIN_TEXT" value="61" />
-          <entry key="Python" value="28902" />
+          <entry key="Python" value="31250" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="css" value="29" />
-          <entry key="html" value="109" />
-          <entry key="js" value="4" />
+          <entry key="css" value="32" />
+          <entry key="html" value="115" />
+          <entry key="js" value="5" />
           <entry key="png" value="4" />
           <entry key="pstat" value="1" />
-          <entry key="py" value="208" />
+          <entry key="py" value="214" />
           <entry key="rnc" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="CSS" value="29" />
-          <entry key="HTML" value="109" />
+          <entry key="CSS" value="32" />
+          <entry key="HTML" value="115" />
           <entry key="Image" value="4" />
-          <entry key="JavaScript" value="4" />
+          <entry key="JavaScript" value="5" />
           <entry key="Profiler Session" value="1" />
-          <entry key="Python" value="208" />
+          <entry key="Python" value="214" />
           <entry key="RNG Compact" value="1" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/accounts/models.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="645">
-              <caret line="43" lean-forward="true" selection-start-line="43" selection-end-line="43" />
-              <folding>
-                <element signature="e#0#28#0" expanded="true" />
-                <marker date="1541816202128" expanded="true" signature="934:935" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/accounts/profile.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1548">
-              <caret line="104" column="135" selection-start-line="104" selection-start-column="135" selection-end-line="104" selection-end-column="135" />
-              <folding>
-                <element signature="e#714#755#0#HTML" expanded="true" />
-                <element signature="e#1343#1399#0#HTML" expanded="true" />
-                <element signature="e#1951#1993#0#HTML" expanded="true" />
-                <element signature="e#2785#2809#0#HTML" expanded="true" />
-                <element signature="e#3652#3672#0#HTML" expanded="true" />
-                <element signature="e#4525#4546#0#HTML" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/accounts/static/accounts/css/profile.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2712">
-              <caret line="189" column="28" selection-start-line="189" selection-start-column="28" selection-end-line="189" selection-end-column="28" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/accounts/forms.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1755">
-              <caret line="117" column="28" selection-start-line="117" selection-start-column="28" selection-end-line="117" selection-end-column="28" />
-              <folding>
-                <element signature="e#0#24#0" expanded="true" />
-                <marker date="1541793752587" expanded="true" signature="2140:2141" ph="..." />
-                <marker date="1541793752587" expanded="true" signature="2750:2755" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/accounts/views.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="915">
-              <caret line="61" column="34" selection-start-line="61" selection-start-column="34" selection-end-line="61" selection-end-column="34" />
-              <folding>
-                <element signature="e#0#45#0" expanded="true" />
-                <marker date="1541813326200" expanded="true" signature="2875:2876" ph="..." />
-                <marker date="1541813326200" expanded="true" signature="2900:2992" ph="..." />
-                <marker date="1541813326200" expanded="true" signature="3014:3835" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/accounts/static/accounts/js/profile.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1380">
-              <caret line="92" selection-start-line="92" selection-end-line="92" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -220,13 +136,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>start</find>
-      <find>Volume_verificado</find>
-      <find>Nome_do_Verificador</find>
-      <find>Ar_SIntético</find>
-      <find>displa</find>
-      <find>ATualizar</find>
-      <find>AUTH_USER</find>
       <find>Atualizar</find>
       <find>redirect</find>
       <find>LOGI</find>
@@ -250,6 +159,13 @@
       <find>myForm</find>
       <find>btn</find>
       <find>td</find>
+      <find>Projetos</find>
+      <find>projetos</find>
+      <find>calendar</find>
+      <find>form-con</find>
+      <find>visibi</find>
+      <find>json</find>
+      <find>log</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -285,9 +201,7 @@
         <option value="$PROJECT_DIR$/templates/registration/base.html" />
         <option value="$PROJECT_DIR$/accounts/accoutns_chocies.py" />
         <option value="$PROJECT_DIR$/accounts/static/accounts/css/userc.css" />
-        <option value="$PROJECT_DIR$/templates/accounts/base.html" />
         <option value="$PROJECT_DIR$/Fito/views.py" />
-        <option value="$PROJECT_DIR$/static/css/basic.css" />
         <option value="$PROJECT_DIR$/templates/registration/login.html" />
         <option value="$PROJECT_DIR$/gas_control/models.py" />
         <option value="$PROJECT_DIR$/accounts/urls.py" />
@@ -297,14 +211,16 @@
         <option value="$PROJECT_DIR$/templates/base.html" />
         <option value="$PROJECT_DIR$/Fito/urls.py" />
         <option value="$PROJECT_DIR$/templates/accounts/userc.html" />
-        <option value="$PROJECT_DIR$/accounts/admin.py" />
         <option value="$PROJECT_DIR$/accounts/accoutns_choices.py" />
-        <option value="$PROJECT_DIR$/accounts/forms.py" />
-        <option value="$PROJECT_DIR$/accounts/views.py" />
+        <option value="$PROJECT_DIR$/templates/accounts/base.html" />
+        <option value="$PROJECT_DIR$/static/css/basic.css" />
+        <option value="$PROJECT_DIR$/accounts/admin.py" />
         <option value="$PROJECT_DIR$/accounts/models.py" />
-        <option value="$PROJECT_DIR$/accounts/static/accounts/js/profile.js" />
-        <option value="$PROJECT_DIR$/templates/accounts/profile.html" />
+        <option value="$PROJECT_DIR$/accounts/forms.py" />
         <option value="$PROJECT_DIR$/accounts/static/accounts/css/profile.css" />
+        <option value="$PROJECT_DIR$/accounts/views.py" />
+        <option value="$PROJECT_DIR$/templates/accounts/profile.html" />
+        <option value="$PROJECT_DIR$/accounts/static/accounts/js/profile.js" />
       </list>
     </option>
   </component>
@@ -315,9 +231,9 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="67" />
-    <option name="width" value="1213" />
-    <option name="height" value="788" />
+    <option name="x" value="61" />
+    <option name="width" value="1215" />
+    <option name="height" value="785" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -325,7 +241,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -357,7 +272,25 @@
               <item name="accounts" type="462c0819:PsiDirectoryNode" />
               <item name="static" type="462c0819:PsiDirectoryNode" />
               <item name="accounts" type="462c0819:PsiDirectoryNode" />
+              <item name="css" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Fito" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Fito" type="462c0819:PsiDirectoryNode" />
+              <item name="accounts" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+              <item name="accounts" type="462c0819:PsiDirectoryNode" />
               <item name="js" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Fito" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Fito" type="462c0819:PsiDirectoryNode" />
+              <item name="gas_control" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Fito" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Fito" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Fito" type="b2602c69:ProjectViewProjectNode" />
@@ -374,6 +307,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -586,14 +520,14 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="67" y="0" width="1213" height="788" extended-state="0" />
+    <frame x="61" y="0" width="1215" height="785" extended-state="0" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19758412" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.20757967" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3289256" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.80759275" weight="0.3033033" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.6155089" weight="0.30467573" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49698016" weight="0.3948949" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -601,8 +535,8 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50301987" side_tool="true" weight="0.6291291" />
-      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.7860224" weight="0.4054054" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.38449112" side_tool="true" weight="0.3131783" />
+      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.7860224" weight="0.4031008" />
       <window_info anchor="bottom" id="Python Console" order="12" sideWeight="0.49956858" weight="0.32882884" />
       <window_info anchor="bottom" id="Concurrent Activities Diagram" order="13" sideWeight="0.49698016" weight="0.6291291" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -612,7 +546,7 @@
       <window_info anchor="right" id="R Packages" order="4" weight="0.32929993" />
       <window_info anchor="right" id="Database" order="5" weight="0.32929993" />
       <window_info anchor="right" id="Coverage" order="6" side_tool="true" />
-      <window_info anchor="right" id="SciView" order="7" visible="true" weight="0.05867127" />
+      <window_info anchor="right" id="SciView" order="7" visible="true" weight="0.07321275" />
     </layout>
     <layout-to-restore>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19672132" />
@@ -690,9 +624,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/gas_control/static/images/heplot.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/gas_control/userc.html.py" />
     <entry file="file://$PROJECT_DIR$/gas_control/static/css/basic.css" />
     <entry file="file://$PROJECT_DIR$/gas_control/static/css/userc.css" />
@@ -745,13 +676,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/static/css/basic.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3119">
-          <caret line="8" column="21" selection-start-line="8" selection-start-column="21" selection-end-line="8" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/registration/login.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
@@ -774,11 +698,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/venv/lib/python3.7/site-packages/django/db/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-315">
-          <folding>
-            <element signature="e#0#31#0" expanded="true" />
-          </folding>
-        </state>
+        <state relative-caret-position="-315" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/venv/lib/python3.7/site-packages/django/db/models/signals.py">
@@ -865,13 +785,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/gas_control/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-195">
-          <caret line="7" column="1" selection-start-line="7" selection-start-column="1" selection-end-line="7" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/base.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="375">
@@ -924,20 +837,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/accounts/admin.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="30" column="31" selection-start-line="30" selection-start-column="31" selection-end-line="30" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/accounts/base.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-157">
-          <caret line="9" selection-start-line="9" selection-end-line="9" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/accounts/accoutns_choices.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
@@ -945,68 +844,93 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/static/css/basic.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="615">
+          <caret line="41" column="16" selection-start-line="41" selection-end-line="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/venv/lib/python3.7/site-packages/django/core/serializers/__init__.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gas_control/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="19" selection-start-line="11" selection-start-column="19" selection-end-line="11" selection-end-column="19" />
+          <folding>
+            <element signature="e#0#35#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/accounts/base.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3">
+          <caret line="17" selection-start-line="17" selection-end-line="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/accounts/static/accounts/css/profile.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="316" selection-start-line="316" selection-end-line="316" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/accounts/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="600">
+          <caret line="105" column="19" lean-forward="true" selection-start-line="105" selection-start-column="19" selection-end-line="105" selection-end-column="19" />
+          <folding>
+            <element signature="e#0#45#0" expanded="true" />
+            <marker date="1542062576184" expanded="true" signature="3484:3745" ph="..." />
+            <marker date="1542062576184" expanded="true" signature="3766:3771" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/accounts/forms.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="138">
+          <caret line="141" column="26" selection-start-line="141" selection-start-column="26" selection-end-line="141" selection-end-column="26" />
+          <folding>
+            <element signature="e#0#24#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/templates/accounts/profile.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1548">
-          <caret line="104" column="135" selection-start-line="104" selection-start-column="135" selection-end-line="104" selection-end-column="135" />
+        <state relative-caret-position="120">
+          <caret line="146" column="97" selection-start-line="146" selection-start-column="97" selection-end-line="146" selection-end-column="97" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/accounts/static/accounts/js/profile.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1695">
+          <caret line="113" column="7" selection-start-line="113" selection-start-column="7" selection-end-line="113" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/accounts/admin.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="22" selection-start-line="8" selection-start-column="22" selection-end-line="8" selection-end-column="22" />
           <folding>
-            <element signature="e#714#755#0#HTML" expanded="true" />
-            <element signature="e#1343#1399#0#HTML" expanded="true" />
-            <element signature="e#1951#1993#0#HTML" expanded="true" />
-            <element signature="e#2785#2809#0#HTML" expanded="true" />
-            <element signature="e#3652#3672#0#HTML" expanded="true" />
-            <element signature="e#4525#4546#0#HTML" expanded="true" />
+            <element signature="e#0#32#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/accounts/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="645">
-          <caret line="43" lean-forward="true" selection-start-line="43" selection-end-line="43" />
+        <state relative-caret-position="363">
+          <caret line="57" selection-start-line="57" selection-end-line="57" />
           <folding>
             <element signature="e#0#28#0" expanded="true" />
-            <marker date="1541816202128" expanded="true" signature="934:935" ph="..." />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/accounts/static/accounts/css/profile.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2712">
-          <caret line="189" column="28" selection-start-line="189" selection-start-column="28" selection-end-line="189" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/accounts/forms.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1755">
-          <caret line="117" column="28" selection-start-line="117" selection-start-column="28" selection-end-line="117" selection-end-column="28" />
-          <folding>
-            <element signature="e#0#24#0" expanded="true" />
-            <marker date="1541793752587" expanded="true" signature="2140:2141" ph="..." />
-            <marker date="1541793752587" expanded="true" signature="2750:2755" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/accounts/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="915">
-          <caret line="61" column="34" selection-start-line="61" selection-start-column="34" selection-end-line="61" selection-end-column="34" />
-          <folding>
-            <element signature="e#0#45#0" expanded="true" />
-            <marker date="1541813326200" expanded="true" signature="2875:2876" ph="..." />
-            <marker date="1541813326200" expanded="true" signature="2900:2992" ph="..." />
-            <marker date="1541813326200" expanded="true" signature="3014:3835" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/accounts/static/accounts/js/profile.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1380">
-          <caret line="92" selection-start-line="92" selection-end-line="92" />
         </state>
       </provider>
     </entry>

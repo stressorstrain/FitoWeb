@@ -2,8 +2,9 @@ from django import forms
 from django.forms.widgets import PasswordInput, TextInput
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
-from .models import UserProfile, UserProjects, UserUploads
+from .models import UserProfile, UserProjects, UserUploads, UserDates
 from .accoutns_choices import *
+import datetime
 from django.db import models
 
 
@@ -128,3 +129,25 @@ class UserUploadsForms(forms.Form):
     class Meta:
         model: UserUploads
         fields = ('docname', 'file', 'type')
+
+
+class NotesForm(forms.Form):
+    note_text = forms.CharField(
+        max_length=1000,
+        required=True,
+        label='Nota:',
+
+    )
+    note_date = forms.DateField(
+        input_formats=['%d/%m/%Y'],
+        widget=TextInput(
+            attrs={
+                'readonly':'readonly'
+            }
+        )
+    )
+
+
+    class Meta:
+        model: UserDates
+        fields = ('note_text', )

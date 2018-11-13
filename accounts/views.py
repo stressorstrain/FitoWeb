@@ -1,11 +1,10 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
-from .forms import CustomAuthForm, RegistrationForm, ProfileForm, ProjectsForm, UserUploadsForms
-from .models import UserProfile, UserProjects, UserUploads
+from .forms import CustomAuthForm, RegistrationForm, ProfileForm, ProjectsForm, UserUploadsForms, NotesForm
+from .models import UserProfile, UserProjects, UserUploads, UserDates
 from django.contrib.auth.forms import UserCreationForm
 
-from django.core import serializers
 
 
 from django.contrib.auth.models import User
@@ -40,6 +39,8 @@ def profile(request, username):
     if request.method == "POST":
         p_form = ProjectsForm(request.POST)
         doc_form = UserUploadsForms(request.POST, request.FILES)
+        notes_form = NotesForm(request.POST)
+        print(notes_form.errors)
         if p_form.is_valid():
             user = request.user
             username = str(user)
@@ -55,12 +56,23 @@ def profile(request, username):
             instance = UserUploads(username=username, docname=doc, type=type, file=request.FILES['file'])
             instance.save()
 
+        elif notes_form.is_valid():
+            username = request.user.username
+            note_text = notes_form.cleaned_data['note_text']
+            note_date = notes_form.cleaned_data['note_date']
+            instance = UserDates(username=username, note_text=note_text, note_date=note_date)
+            instance.save()
+
+    all_notes = UserDates.objects.all()
     all_docs = UserUploads.objects.all()
     all_profiles = UserProfile.objects.all()
     all_users = User.objects.all()
     all_projects = UserProjects.objects.all()
     documents = UserUploadsForms()
     project_form = ProjectsForm()
+    notes_form = NotesForm
+    dates = nota_date(all_notes, request)
+    print(dates)
 
     return render(request,
                   'accounts/profile.html',
@@ -69,11 +81,25 @@ def profile(request, username):
                        'profiles': all_profiles,
                        'username': username,
                        'projects': all_projects,
+                       'notes': all_notes,
                        'project_form': project_form,
                        'doc_form': documents,
+                       'notes_form': notes_form,
                        'all_docs': all_docs,
+                       'dates': dates,
                     }
                   )
+
+
+def nota_date(notas, request):
+    dates = []
+    for note in notas:
+        nt_list = []
+        if note.username == request.user.username:
+            nt_list.append(note.note_date.strftime("%d"))
+            nt_list.append(note.note_date.strftime("%m"))
+            dates.append(nt_list)
+    return dates
 
 
 def log_out(request):

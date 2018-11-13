@@ -102,10 +102,10 @@
        <div id="mainbottom">
             <div class="square">
                 <div id="avisos1" class="projecto" style="overflow-y: auto;">
-                    <h1 style="color: black; font-size: 160%;">Projetos <button onclick="openForm('project_form')" style="font-size: 100%; display: inline-block; margin-left: 2%">+</button></h1>
+                    <h1 style="color: black; font-size: 80%;">Projetos <button onclick="openForm('project_form')" style="font-size: 100%; display: inline-block; margin-left: 2%">+</button></h1>
                     {% block form %}
                         <form method="POST" id="project_form" class="form-container">
-                            <button type="button" class="btn cancel" onclick="closeForm('project_form')">X</button>
+                            <button type="button" class="cancel" onclick="closeForm('project_form')">X</button>
                             <h1>Adicionar Projetos</h1>
 
                             {% csrf_token %}
@@ -122,19 +122,37 @@
                 </div>
             </div>
             <div class = "square" style="width: 45%; ">
-                    <div class="avisos">
-                    <h1 style="font-size: 160%;"> Calendário </h1>
+                    <div class="avisos" id="calendario">
+                    <h1 style="font-size: 160%; color: black;"> Calendário </h1>
+                        <div class="tooltip">
+                            <span class="tooltiptext">Clique no dia para adicionar uma nota.</span>
+                        </div>
+                        {% block note %}
+                            <form method="POST" id="notes_form" >
+                                <button type="button" class="cancel" onclick="closeForm('notes_form')">X</button>
+                                <h1>Criar Nota</h1>
+                                    {% csrf_token %}
+                                    {{ notes_form.as_p }}
+                                <button style="font-size: 100%" onclick="document.getElementById('notes_form').submit()" class="addin">Adicionar</button>
+                        {% endblock note%}
+                        </form>
                         <div id="calendar">
+
                             <div id="calendar-container">
                                 <div id="calendar-header">
                                     <span id="calendar-month-year"></span>
+                                    {% block cal %}
+                                        {% for note in dates %}
+                                            {% for nota in note %}
+                                                <input type="hidden" class="listas" value="{{nota|safe }}" />
+                                        {% endfor %}
+                                        {% endfor %}
+                                    {% endblock cal %}
+
 
                                 </div>
                                 <div id="calendar-dates">
                                 </div><br>
-                                    <div class="tooltip">
-                                        <span class="tooltiptext">Clique no dia para adicionar uma nota.</span>
-                                    </div>
 
                             </div>
                         </div>
@@ -142,7 +160,17 @@
             </div>
             <div class = "square" style="width: 22%;">
                     <div class="avisos">
-                    <h1 style="font-size: 160%;"> Datas Importantes </h1>
+                    <h1 style="font-size: 160%;"> Datas  </h1>
+                        <div id="notes">
+                            {% block notas %}
+                                {% for nota in notes %}
+                                    {% if request.user.username == nota.username %}
+                                        <button onclick="go_project(this.innerText)" class='projetos'>{{ nota.note_date }}: {{ nota.note_text }}</button>
+                                    {% endif %}
+
+                                {% endfor %}
+                            {% endblock notas %}
+                        </div>
 
                     </div>
             </div>

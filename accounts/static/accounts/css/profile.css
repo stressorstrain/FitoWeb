@@ -59,7 +59,7 @@ td{
     width: 100%;
     height: 100%;
     padding-top: 0;
-    font-size: 140%;
+    font-size: 80%;
     clear: both;
     display: inline-block;
     /*font-family: 'Karla', sans-serif;*/
@@ -67,11 +67,12 @@ td{
 
 }
 #calendar{
-    width: 100%;
-    height: 80%;
+    width: 80%;
+    height: 67% ;
     background: white;
     display: inline-block;
     float: left;
+    margin-left: 10%;
 }
 
 #calendar-container{
@@ -81,7 +82,7 @@ td{
     text-align: center;
     border: 1px solid black;
     border-radius: 10px;
-    font-size: 120%;
+    font-size: 100%;
     font-family: "Arial", sans-serif ;
     background: white;
     /*background-image: linear-gradient(#fff, #d3d3d3);*/
@@ -89,9 +90,14 @@ td{
 }
 
 table#caltab td{
-    font-size: 80%;
+    font-size: 70%;
     width:10%;
 }
+#calendario{
+    background: white;
+    color: black;
+}
+
 #calendar-container>td{
     width: 100%;
 }
@@ -111,21 +117,19 @@ table#caltab td{
 
 }
 .tooltip .tooltiptext {
-    width: 30%;
+    width: 100%;
     background-color: white;
-    text-align: center;
+    text-align: right;
     border-radius: 6px;
     padding: 5px 0;
-    font-size: 70%;
-    color: black;
-
-    /* Position the tooltip */
-    z-index: 1;
-    margin-right: 64%;
+    font-size: 80%;
+    float: right;
+    color: white;
+    margin-right: 10%   ;
 }
 
 .tooltip:hover .tooltiptext {
-    visibility: visible;
+    color: black;
 }
 
 .projects{
@@ -229,11 +233,28 @@ table#caltab td{
     margin-top: 1%;
 }
 .cancel{
-      background-color: red;
-    width: 10%;
+  background-color: red;
+  color: white;
+  border: none;
+  cursor: pointer;
+  width: 10%;
+    height: 10%;
     margin-left: 90%;
     font-size: 90%;
     margin-top: 1%;
+  opacity: 0.8;
+
+}
+.addin{
+      background-color: #4CAF50;
+  color: white;
+  padding: 16px 5px;
+  border: none;
+  cursor: pointer;
+  width: 30%;
+    margin-top: 2%;
+  margin-bottom:10%;
+  opacity: 0.8;
 }
 /* Add some hover effects to buttons */
 .form-container .btn:hover, .open-button:hover {
@@ -244,7 +265,7 @@ table#caltab td{
    border: 2px solid black;
     width:65%;
     height: 20%;
-    font-size: 150%;
+    font-size: 80%;
     text-align: center;
     margin-bottom: 1%;
     padding-top: 5%;
@@ -277,4 +298,21 @@ table#caltab td{
     display: block;
     float: left;
     border-right: 2px solid black;
+}
+
+#notes_form {
+    visibility: hidden;
+    margin-top: -20%;
+    height: 50%;
+    width: 50%;
+    display: block;
+    position: fixed;
+    border: 2px solid black;
+    padding: 7px;
+    background-color: white;
+    font-size: 120%;
+    box-shadow: 15px 15px 10px grey;
+}
+#notes{
+
 }

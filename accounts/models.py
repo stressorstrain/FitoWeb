@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from . import accoutns_choices as choices
+import datetime
 
 
 def user_directory_path(instance, filename):
@@ -47,4 +48,10 @@ class UserUploads(models.Model):
         return 'docs'
 
 
+class UserDates(models.Model):
+    username = models.CharField(max_length=200)
+    note_text = models.CharField(max_length=1000)
+    note_date = models.DateField(blank=False, null=False)
 
+    def search(self):
+        return 'usernotes'

@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.models import User
-from .models import UserProfile, UserProjects, UserUploads
+from .models import UserProfile, UserProjects, UserUploads, UserDates
 
 
 class ProfileInline(admin.StackedInline):
@@ -29,3 +29,4 @@ admin.site.register(User, CustomUserAdmin)
 admin.site.register(UserProfile)
 admin.site.register(UserProjects)
 admin.site.register(UserUploads)
+admin.site.register(UserDates)

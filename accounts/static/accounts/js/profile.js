@@ -1,5 +1,6 @@
 window.onload = calendar();
 function calendar() {
+
     var d = new Date();
     var month_name = ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
     var month = d.getMonth();   //0-11
@@ -13,12 +14,16 @@ function calendar() {
     var day_no = day_name.indexOf(first_day);   //1
     var days = new Date(year, month+1, 0).getDate();    //30
     //Tue Sep 30 2014 ...
-    var calendar = get_calendar(day_no, days);
-    document.getElementById("calendar-month-year").innerHTML = month_name[month]+" "+year;
+    var month2 = month+1;
+
+    var calendar = get_calendar(day_no, days, month, year, month2);
+    document.getElementById("calendar-month-year").innerHTML = month_name[month]+"/"+year;
     document.getElementById("calendar-dates").appendChild(calendar);
+    data(month2);
+
 
 }
-function get_calendar(day_no, days){
+function get_calendar(day_no, days, month, year, month2){
     var table = document.createElement('table');
     table.setAttribute("id", "caltab");
     var tr = document.createElement('tr');
@@ -67,17 +72,50 @@ function get_calendar(day_no, days){
                 return table;
             }
             var td = document.createElement('td');
-            td.addEventListener("click",function(){
-            console.log("cell clicked");
-            });
             td.innerHTML = count;
+            td.className = 'dias';
+
+            td.addEventListener("click",function(){
+                var n_month = month+1;
+                var date = document.getElementById("calendar-month-year").innerHTML;
+                document.getElementById("notes_form").style.visibility= "visible";
+                document.getElementById('id_note_date').value = this.innerHTML+"/"+n_month+"/"+year;
+            });
             count++;
             tr.appendChild(td);
         }
         table.appendChild(tr);
     }
+
     return table;
 
+}
+function data(month) {
+    var dates = document.getElementsByClassName('listas');
+    var i;
+    var j;
+    var dia;
+    var dias = [];
+    var mes = [];
+    var day;
+    var days = document.getElementsByClassName('dias');
+    for (i = 0; i < dates.length; i++) {
+        j = i % 2;
+        if (j === 0) {
+            dias.push(dates[i].value);
+
+        } else {
+            if (parseInt(dates[i].value) === month){
+             mes.push(dates[i].value)
+            }
+        }
+    }
+    for (day = 0; day < days.length; day++){
+        dia =  days[day].innerHTML;
+        if(dias.includes(dia)) {
+            days[day].style.background = 'green';
+        }
+    }
 }
 function add_project(){
     var parent = document.getElementById('avisos1');
