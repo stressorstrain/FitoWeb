@@ -99,10 +99,10 @@
             </div>
         </div>
     </div>
+    {% block chart %}
     <div id=graphs>
-        <div id=graphs2>Ultima Verificação: 01/10/2018 - Guilherme Niederauer
+        <div id=graphs2>Ultima Verificação:  {{ last_check }} - {{ last_checker }}
         </div>
-            {% block chart %}
                 <div style="margin-top:8%">
                     <img id='heplot' src="{%  static 'images/heplot.png' %}" style="float: left; width: 48%; height: 90%; margin-top: -10%">
                     <img id='2plot' src="{%  static 'images/doubplot.png' %}" style="float: right; width: 48%; height: 90%; margin-top: -10%">

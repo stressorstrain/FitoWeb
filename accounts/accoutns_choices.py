@@ -1,4 +1,5 @@
-CARGO_CHOICES = (
+
+NIVEL_CHOICES = (
     (1, 'Iniciação Científica'),
     (2, 'Mestrado'),
     (3, 'Doutorado'),
@@ -15,3 +16,23 @@ DOC_TYPES = (
     (3, '.ppx'),
 
 )
+
+
+def pro_ch(username):
+    all_pro = UserProjects.objects.all().filter(user=username)
+    proj = []
+    for i in all_pro:
+        proj.append(i.projeto)
+
+
+def conc(choice):
+    for i in range(0, len(st)):
+        tp = ()
+        tp +=(i,)
+        print(tp)
+
+        tp += (st[i], )
+        print(tp)
+
+        choice += (tp, )
+        print(choice)

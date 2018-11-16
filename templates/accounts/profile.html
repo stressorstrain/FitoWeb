@@ -6,17 +6,9 @@
         <div id="mainbottom">
             <div class="square">
                 <div class="avisos">
-                    {% for user in users %}
-                        {% if user.username == username  %}
-                            <h1 style="font-size: 160%;">{{ user.first_name }} {{ user.last_name }}</h1>
-                        {% endif %}
-                    {% endfor user %}
+                    <h1 style="font-size: 160%;">{{ user.first_name }} {{ user.last_name }}</h1>
                     <div id="avatar">
-                    {% for profile in profiles %}
-                        {% if profile.user.username == username  %}
-                            <input type="image" style="width:101%; height: 100%;" src="/{{ profile.avatar.url }}">
-                        {% endif %}
-                    {% endfor user %}
+                        <input type="image" style="width:101%; height: 100%;" src="/media/{{ avatar }}">
                     </div>
                     <div id="info">
                         <p style="float:left; margin-left: 5%; font-size: 120%;">INFO</p>
@@ -25,17 +17,8 @@
             </div>
             <div class = "square" style="width: 45%; ">
                     <div class="avisos">
-                    <h1 id='heder' style="font-size: 160%;"> Projeto Atual </h1>
-                        {% block dform %}
-                        <form method="POST" id="doc_form" class="form-container" style="margin-top: -2%; margin-left:0; font-size: 110%;" enctype="multipart/form-data">
-                            <button type="button" class="btn cancel" onclick="closeForm('doc_form')">X</button>
-                            <h1>Adicionar Documento</h1>
+                    <h1 id='heder' style="font-size: 160%;"> {{ recent }} </h1>
 
-                            {% csrf_token %}
-                            {{ doc_form.as_p }}
-                            <button style="font-size: 100%" onclick="document.getElementById('doc_form').submit()" class="btn">Adicionar</button>
-                        </form>
-                         {% endblock dform %}
                          <button style="margin-bottom: 2%; font-size: 120%" onclick="openForm('doc_form')">+</button>
                         <table>
                             <tr>
@@ -47,47 +30,28 @@
                         <div id="table">
                             <div class="tablediv">
                                 <table>
-                                    {% for docs in all_docs %}
-                                        {% if docs.username == request.user.username %}
-                                            {% if docs.type == 1 %}
-                                                <tr>
-                                                        <td style="color: royalblue">
-                                                            {{ docs.docname }}
-                                                        </td>
-                                                </tr>
-                                            {% endif %}
-                                        {% endif %}
-                                    {% endfor %}
+                                    {% block cals %}
+                                        {%  for proj in user_pro %}
+                                                <div class='doct' id={{ proj }}>
+                                                    {% for doc in user_doc %}
+                                                        {% if doc.projetos == proj %}
+                                                        <br>{{ doc.docname }}
+                                                        {% endif %}
+                                                    {% endfor %}
+                                                </div>
+                                        {% endfor %}
+                                    {% endblock cals %}
+
                                 </table>
                             </div>
                             <div class="tablediv">
                                 <table>
-                                    {% for docs in all_docs %}
-                                        {% if docs.username == request.user.username %}
-                                            {% if docs.type == 2 %}
-                                                <tr>
-                                                        <td style="color: green">
-                                                            {{ docs.docname }}
-                                                        </td>
-                                                </tr>
-                                            {% endif %}
-                                        {% endif %}
-                                    {% endfor %}
+
                                 </table>
                             </div>
                             <div class="tablediv">
                                 <table>
-                                    {% for docs in all_docs %}
-                                        {% if docs.username == request.user.username %}
-                                            {% if docs.type == 3 %}
-                                                <tr>
-                                                        <td style="color: yellow">
-                                                            {{ docs.docname }}
-                                                        </td>
-                                                </tr>
-                                            {% endif %}
-                                        {% endif %}
-                                    {% endfor %}
+
                                 </table>
                             </div>
                         </div>
@@ -103,22 +67,10 @@
             <div class="square">
                 <div id="avisos1" class="projecto" style="overflow-y: auto;">
                     <h1 style="color: black; font-size: 80%;">Projetos <button onclick="openForm('project_form')" style="font-size: 100%; display: inline-block; margin-left: 2%">+</button></h1>
-                    {% block form %}
-                        <form method="POST" id="project_form" class="form-container">
-                            <button type="button" class="cancel" onclick="closeForm('project_form')">X</button>
-                            <h1>Adicionar Projetos</h1>
 
-                            {% csrf_token %}
-                            {{ project_form.as_p }}
-                            <button style="font-size: 100%" onclick="document.getElementById('project_form').submit()" class="btn">Adicionar</button>
-                        </form>
-                    {% endblock form %}
-                    {% for projeto in projects %}
-                        {% if projeto.username == request.user.username %}<br/>
-                            <button onclick="go_project(this.innerText)" class='projetos'>{{ projeto.projeto}} {{projeto.data}}</button>
-                        {% endif %}
-                    {% endfor %}
-
+                    {% for proj in projeto %}
+                            <button  onclick="go_project({{ proj.projeto }})" class='projetos'> {{ proj.projeto}} - {{ proj.data }} </button>
+                        {% endfor %}
                 </div>
             </div>
             <div class = "square" style="width: 45%; ">
@@ -127,29 +79,19 @@
                         <div class="tooltip">
                             <span class="tooltiptext">Clique no dia para adicionar uma nota.</span>
                         </div>
-                        {% block note %}
-                            <form method="POST" id="notes_form" >
-                                <button type="button" class="cancel" onclick="closeForm('notes_form')">X</button>
-                                <h1>Criar Nota</h1>
-                                    {% csrf_token %}
-                                    {{ notes_form.as_p }}
-                                <button style="font-size: 100%" onclick="document.getElementById('notes_form').submit()" class="addin">Adicionar</button>
-                        {% endblock note%}
-                        </form>
+
                         <div id="calendar">
 
                             <div id="calendar-container">
                                 <div id="calendar-header">
                                     <span id="calendar-month-year"></span>
                                     {% block cal %}
-                                        {% for note in dates %}
-                                            {% for nota in note %}
-                                                <input type="hidden" class="listas" value="{{nota|safe }}" />
+                                        {% for notel in notes %}
+                                            {% for note in notel %}
+                                                <input type="hidden" class="listas" value={{ note }}>
                                         {% endfor %}
                                         {% endfor %}
                                     {% endblock cal %}
-
-
                                 </div>
                                 <div id="calendar-dates">
                                 </div><br>
@@ -161,10 +103,10 @@
             <div class = "square" style="width: 22%;">
                     <div class="avisos">
                     <h1 style="font-size: 160%;"> Datas  </h1>
-                        <div id="notes">
+                        <div class="notes">
                             {% block notas %}
-                                {% for nota in notes %}
-                                    {% if request.user.username == nota.username %}
+                                {% for nota in all_notes %}
+                                    {% if request.user.username == nota.user.user.username %}
                                         <button onclick="go_project(this.innerText)" class='projetos'>{{ nota.note_date }}: {{ nota.note_text }}</button>
                                     {% endif %}
 
@@ -175,6 +117,41 @@
                     </div>
             </div>
         </div>
+            {% block form %}
+                <form method="POST" id="project_form" class="form-container">
+                    <button type="button" class="cancel" onclick="closeForm('project_form')">X</button>
+                    <h1>Adicionar Projetos</h1>
+
+                    {% csrf_token %}
+                    {{ projects_form.as_p }}
+                    <button style="font-size: 100%" onclick="document.getElementById('project_form').submit()" class="btn">Adicionar</button>
+                </form>
+            {% endblock form %}
+                {% block dform %}
+                    <form method="POST" id="doc_form" class="form-container"  enctype="multipart/form-data">
+                        <button type="button" class="cancel" onclick="closeForm('doc_form')">X</button>
+                        <h1>Adicionar Documento</h1>
+                        {% csrf_token %}
+                        {{ upform.as_p }}
+                        <div id="dform>">
+                            {% for proj in projeto %}
+                                {%  if proj.user.user == request.user %}
+                                    <button onclick="proj('id_projetos', this.innerHTML)" style="background:white; color: black; cursor: pointer; ">{{ proj.projeto }}</button>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                            <button style="font-size: 100%" onclick="document.getElementById('doc_form').submit()" class="btn">Adicionar</button>
+                        </form>
+                {% endblock dform %}
+                {% block note %}
+                    <form method="POST" id="notes_form" class="form-container" >
+                        <button type="button" class="cancel" onclick="closeForm('notes_form')">X</button>
+                        <h1>Criar Nota</h1>
+                        {% csrf_token %}
+                        {{ notes_form.as_p }}
+                        <button style="font-size: 100%" onclick="document.getElementById('notes_form').submit()" class="btn">Adicionar</button>
+                    </form>
+                {% endblock note%}
     </div>
 
 {%  endblock maindiv %}

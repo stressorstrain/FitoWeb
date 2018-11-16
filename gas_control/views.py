@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from . import gas
 from .models import Gas
 from django.core import serializers
 from .forms import PostForm
@@ -23,7 +24,8 @@ def chart(request):
 @login_required
 def gases(request):
     all_gases = Gas.objects.all().order_by('-id')[:1]
-
+    last_check = Gas.objects.latest('id').ver_date
+    last_checker = Gas.objects.latest('id').ver_name
     if request.method == 'POST':
         form = PostForm(request.POST)
         if form.is_valid():
@@ -36,16 +38,28 @@ def gases(request):
             ver_name = form.cleaned_data['Nome_do_Verificador']
             ver_date = form.cleaned_data['Data_de_Verificacao']
             new_data = (str(ver_date)+"\t"+str(ars)+"\t"+str(h2)+"\t"+str(he))
-            start(new_data)
+            gas.start(new_data)
             data = Gas(ars=ars, h2=h2, he=he, ars_p=ars_p, h2_p=h2_p, he_p=he_p, ver_name=ver_name, ver_date=ver_date)
             data.save()
 
-            return render(request, 'gas_control/website.html', {'all_gases': all_gases, 'form': form})
+            return render(request, 'gas_control/website.html',
+                          {
+                              'all_gases': all_gases,
+                              'form': form,
+                              'last_check': last_check,
+                              'last_checker': last_checker
+                          })
 
     else:
 
         form = PostForm
-        return render(request, 'gas_control/website.html', {'all_gases': all_gases, 'form': form})
+        return render(request, 'gas_control/website.html',
+                      {
+                          'all_gases': all_gases,
+                          'form': form,
+                          'last_check': last_check,
+                          'last_checker': last_checker
+                      })
 
 
 def porcentagem(cvol, ind):

@@ -11,10 +11,6 @@ class ProfileInline(admin.StackedInline):
     fk_name = 'user'
 
 
-class UserProjectsAdmin(admin.ModelAdmin):
-    pass
-
-
 class CustomUserAdmin(UserAdmin):
     inlines = (ProfileInline, )
 

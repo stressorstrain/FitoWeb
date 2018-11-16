@@ -86,7 +86,7 @@ class ProjectsForm(forms.Form):
         label='Nome Do Projeto',
         required=True,
         widget=TextInput(
-            attrs={'style': 'font-size: 120%; width:50%; height:10%;',
+            attrs={'style': 'font-size: 120%; width:100%; height:10%;',
                    }
         )
     )
@@ -95,8 +95,16 @@ class ProjectsForm(forms.Form):
         label='Data de Execução',
         required=True,
         widget=TextInput(
-            attrs={'style': 'font-size: 120%; width:50%; height:10%;',
+            attrs={'style': 'font-size: 120%; width:100%; height:10%;',
                    }
+        )
+    )
+    nivel = forms.ChoiceField(
+        choices=NIVEL_CHOICES,
+        required=True,
+        widget=forms.Select(
+            attrs={
+                'style': 'font-size: 120%; width:100%; height:7%; '}
         )
     )
 
@@ -111,24 +119,35 @@ class UserUploadsForms(forms.Form):
         label='Nome do Documento',
         required=True,
         widget=TextInput(
-            attrs={'style': 'font-size: 200%; width:50%; height:10%;',
+            attrs={'style': 'font-size: 100%; width:100%; height:10%;',
                    }
         )
 
     )
+
     file = forms.FileField()
     type = forms.ChoiceField(
         choices=DOC_TYPES,
+        label = 'Tipo de Arquivo',
         required=True,
         widget=forms.Select(
             attrs={
-                'style': 'font-size: 80%; width:50%; height:7%; margin-left:24%'}
+                'style': 'font-size: 80%; width:100%; height:7%; '}
         )
     )
+    projetos = forms.CharField(
+        max_length=30,
+        label='Selecione o Projeto',
+        required=True,
+        widget=TextInput(
+            attrs={'style': 'font-size: 100%; width:100%; height:6%; background: grey','readonly':'readonly',
+                   }
+        )
 
+    )
     class Meta:
         model: UserUploads
-        fields = ('docname', 'file', 'type')
+        fields = ('projetos', 'docname', 'file', 'type')
 
 
 class NotesForm(forms.Form):
@@ -147,7 +166,21 @@ class NotesForm(forms.Form):
         )
     )
 
-
     class Meta:
         model: UserDates
         fields = ('note_text', )
+
+
+class FilesForm(forms.Form):
+
+    file = forms.FileField()
+    type = forms.ChoiceField(
+        choices=DOC_TYPES,
+        required=True,
+        widget=forms.Select(
+            attrs={
+                'style': 'font-size: 80%; width:50%; height:7%; margin-left:24%'}
+        )
+    )
+
+

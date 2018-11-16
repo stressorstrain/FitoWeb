@@ -19,6 +19,7 @@ function calendar() {
     var calendar = get_calendar(day_no, days, month, year, month2);
     document.getElementById("calendar-month-year").innerHTML = month_name[month]+"/"+year;
     document.getElementById("calendar-dates").appendChild(calendar);
+
     data(month2);
 
 
@@ -116,6 +117,8 @@ function data(month) {
             days[day].style.background = 'green';
         }
     }
+    var proj = document.getElementById("heder").innerText;
+    document.getElementById(proj).style.visibility = 'visible';
 }
 function add_project(){
     var parent = document.getElementById('avisos1');
@@ -133,11 +136,18 @@ function closeForm(element) {
     var id = document.getElementById(element);
     id.style.visibility = "hidden";
 }
-function go_project(projeto){
-
-    document.getElementById('heder').innerText = 'Projeto Atual: ' + projeto;
+function go_project(projeto, up){
+    var invisible = document.getElementById('heder').innerText;
+    document.getElementById(invisible).style.visibility = 'hidden';
+    var strings = (projeto.id);
+    document.getElementById('heder').innerText = strings;
+    document.getElementById(strings).style.visibility = 'visible';
 
 }
 function upload() {
     document.getElementById('doc_form').style.visibility ="visible";
+}
+function proj(id, txt){
+
+    document.getElementById(id).value = txt;
 }

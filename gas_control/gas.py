@@ -30,6 +30,7 @@ def get_image(date, ars, h2, he):
 
 
 def start(info):
+    print('hi')
     with open("/home/guibax/PycharmProjects/Fito/gas_control/gas_data.txt", "a") as csvfile:
         csvfile.write("\n"+info)
         csvfile.close()
